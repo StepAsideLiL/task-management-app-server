@@ -2,7 +2,14 @@ const taskSchema = require("../models/task.model");
 
 // GET: "/tasks"
 const getAllTask = async (req, res) => {
-  res.send({ hello: "world" });
+  taskSchema
+    .find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 // POST: "/tasks"
