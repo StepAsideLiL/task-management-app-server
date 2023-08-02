@@ -29,7 +29,19 @@ const createNewTask = async (req, res) => {
 };
 
 // PUT: "/tasks/:id"
-const updateTask = async (req, res) => {};
+const updateTask = async (req, res) => {
+  const taskId = req.params.id;
+  const taskInfo = req.body;
+
+  taskSchema
+    .findByIdAndUpdate(taskId, taskInfo, { new: true })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 // DELETE: "/tasks/:id"
 const deleteTask = async (req, res) => {};
