@@ -44,7 +44,18 @@ const updateTask = async (req, res) => {
 };
 
 // DELETE: "/tasks/:id"
-const deleteTask = async (req, res) => {};
+const deleteTask = async (req, res) => {
+  const taskId = req.params.id;
+
+  taskSchema
+    .findByIdAndDelete(taskId)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 module.exports = {
   getAllTask,
