@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   getAllTask,
+  getSingleTask,
   createNewTask,
   updateTask,
   toggleTask,
@@ -9,6 +10,8 @@ const {
 const router = express.Router();
 
 router.get("/tasks", getAllTask);
+
+router.get("/tasks/:id", getSingleTask);
 
 router.post("/tasks", createNewTask);
 

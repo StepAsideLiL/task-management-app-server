@@ -12,6 +12,20 @@ const getAllTask = async (req, res) => {
     });
 };
 
+// GET: "/tasks/:id"
+const getSingleTask = async (req, res) => {
+  const taskId = req.params.id;
+
+  taskSchema
+    .findById(taskId)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 // POST: "/tasks"
 const createNewTask = async (req, res) => {
   const taskInfo = req.body;
@@ -84,6 +98,7 @@ const deleteTask = async (req, res) => {
 
 module.exports = {
   getAllTask,
+  getSingleTask,
   createNewTask,
   updateTask,
   toggleTask,
