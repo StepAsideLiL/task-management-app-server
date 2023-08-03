@@ -43,6 +43,31 @@ const updateTask = async (req, res) => {
     });
 };
 
+// PATCH: "/tasks/toggle/:id"
+const toggleTask = async (req, res) => {
+  const taskId = req.params.id;
+
+  let toggle;
+
+  taskSchema
+    .find()
+    .then((result) => {
+      toggle = result.completed;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  taskSchema
+    .findByIdAndUpdate(taskId, { completed: !toggle }, { new: true })
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 // DELETE: "/tasks/:id"
 const deleteTask = async (req, res) => {
   const taskId = req.params.id;
@@ -61,5 +86,6 @@ module.exports = {
   getAllTask,
   createNewTask,
   updateTask,
+  toggleTask,
   deleteTask,
 };
